@@ -99,7 +99,6 @@ inquirer.prompt(questionsManager).then(answers => {
 
     let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
     teamMembersArray.push(manager)
-    console.log(teamMembersArray);
 
     const addMember = function () {
         inquirer.prompt([
@@ -111,6 +110,16 @@ inquirer.prompt(questionsManager).then(answers => {
         ]).then(answers => {
             if (answers.anotherMember) {
                 typeOfEmployee()
+              
+
+            }
+            else {
+                fs.writeFile(outputPath, render(teamMembersArray), (error) => {
+                    if (error) console.log(error)
+                    else console.log("Success")
+                })
+
+
 
             }
 
@@ -138,39 +147,42 @@ inquirer.prompt(questionsManager).then(answers => {
 
 
          
-        switch (role) {
-                case "Engineer":
-                    inquirer.prompt(questionsEngineer)
-                        .then(answers => {
-                            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
-                            teamMembersArray.push(engineer)
-                            addMember()
+            switch (role) {
+                    case "Engineer":
+                        inquirer.prompt(questionsEngineer)
+                            .then(answers => {
+                                const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+                                teamMembersArray.push(engineer)
+                                addMember()
 
-                        
-                        });
-                    break;
-                case "Intern":
-                    inquirer.prompt(questionsIntern)
-                        .then(answers => {
-                            const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
-                            teamMembersArray.push(intern)
-                            addMember()
-                        })
-                
+                            
+                            });
+                        break;
+                    case "Intern":
+                        inquirer.prompt(questionsIntern)
+                            .then(answers => {
+                                const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
+                                teamMembersArray.push(intern)
+                                addMember()
+                            })
+                    
             }
-        
+            
+            
+            
         })
+        
 
-        console.log("This is outside", teamMembersArray)
 
 
     }
 
 
-    render(teamMembersArray)
 
 
 });
+
+
 
 
 
