@@ -141,7 +141,7 @@ The project must generate a `team.html` page in the `output` directory, that dis
 
 ## Bonus
 
-* Use validation to ensure that the information provided is in the proper expected format.
+* Use validation to ensure that the information provided is in the proper expected format. // this is done in the class add error 
 
 * Add the application to your portfolio.
 
