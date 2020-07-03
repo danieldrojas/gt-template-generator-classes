@@ -16,31 +16,51 @@ const Choice = require("inquirer/lib/objects/choice");
 // and to create objects for each team member (using the correct classes as blueprints!)
 const teamMembersArray = [];
 
+//Functions to handle input 
+
+//Handle any string length
+
+
 //Prompt questions 
 const questionsManager = [
     {
         type: "input",
-        message: "Enter manager's name? ",
+        message: "Enter manager name? ",
         name: "name",
-        // validate: function (value) {
-        //     if (value.length)  return true;
-        //      else  return 'Please enter your username or e-mail address.';
+        validate: function (value) {
+            if (value.length) return true;
+            else return 'Please enter manager name';
+        }
     
     },
     {
         type: "input",
         message: "Enter manager id? ",
-        name: "id"
+        name: "id",
+        validate: function (value) {
+            if (!isNaN(value)) return true;
+            else return 'Please enter valid id';
+        }
     },
     {
         type: "input",
         message: "Enter manager's email? ",
-        name: "email"
+        name: "email",
+        default: () => { },
+        validate: function (email) {
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+            if (valid) return true;
+            else return "Invalid email address"
+        }
     },
     {
         type: "input",
         message: "Enter manager's office number? ",
-        name: "officeNumber"
+        name: "officeNumber",
+        validate: function(value) {
+            if (!isNaN(value)) return true;
+            else return 'Please enter valid id';
+        }
     }
 
 ]
@@ -48,44 +68,80 @@ const questionsEngineer = [
     {
         type: "input",
         message: "Enter engineer name? ",
-        name: "name"
+        name: "name",
+        validate: function (value) {
+            if (value.length) return true;
+            else return 'Please enter manager name';
+        }
+
     },
     {
         type: "input",
         message: "Enter engineer id? ",
-        name: "id"
+        name: "id",
+        validate: function (value) {
+            if (!isNaN(value)) return true;
+            else return 'Please enter valid id';
+        }
     },
     {
         type: "input",
         message: "Enter engineer email? ",
-        name: "email"
+        name: "email",
+        validate: function (email) {
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+            if (valid) return true;
+            else return "Invalid email address"
+        }
     },
     {
         type: "input",
         message: "Enter engineer's github username? ",
-        name: "github"
+        name: "github",
+        validate: function (value) {
+            if (value.length) return true;
+            else return 'Please enter manager name';
+        }
     }
 ]
 const questionsIntern = [
     {
         type: "input",
         message: "Enter intern name? ",
-        name: "name"
+        name: "name",
+        validate: function (value) {
+            if (value.length) return true;
+            else return 'Please enter manager name';
+        }
     },
     {
         type: "input",
         message: "Enter intern id? ",
-        name: "id"
+        name: "id",
+        validate: function (value) {
+            if (!isNaN(value)) return true;
+            else return 'Please enter valid id';
+        }
     },
     {
         type: "input",
         message: "Enter intern email? ",
-        name: "email"
+        name: "email",
+        validate: function (email) {
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+            if (valid) return true;
+            else return "Invalid email address"
+        }
     },
     {
         type: "input",
         message: "Enter intern school ",
-        name: "school"
+        name: "school",
+        validate: function (value) {
+            if (value.length) return true;
+            else return 'Please enter manager name';
+        }
+
     }
 ]
 
