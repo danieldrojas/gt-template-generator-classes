@@ -28,7 +28,8 @@ const questionsManager = [
         message: "Enter manager name? ",
         name: "name",
         validate: function (value) {
-            if (value.length) return true;
+            const regChar = /^[a-zA-Z]*$/;             
+            if (value.length && isNaN(value) && regChar.test(value)) return true;
             else return 'Please enter manager name';
         }
     
@@ -38,7 +39,7 @@ const questionsManager = [
         message: "Enter manager id? ",
         name: "id",
         validate: function (value) {
-            if (!isNaN(value)) return true;
+            if (!isNaN(value) && value.length && value > 0) return true;
             else return 'Please enter valid id';
         }
     },
@@ -58,8 +59,8 @@ const questionsManager = [
         message: "Enter manager's office number? ",
         name: "officeNumber",
         validate: function(value) {
-            if (!isNaN(value)) return true;
-            else return 'Please enter valid id';
+            if (!isNaN(value) && value.length && value > 0) return true;
+            else return 'Please enter valid officeNumber';
         }
     }
 
@@ -70,17 +71,17 @@ const questionsEngineer = [
         message: "Enter engineer name? ",
         name: "name",
         validate: function (value) {
-            if (value.length) return true;
+            const regChar = /^[a-zA-Z]*$/;
+            if (value.length && isNaN(value) && regChar.test(value)) return true;
             else return 'Please enter manager name';
         }
-
     },
     {
         type: "input",
         message: "Enter engineer id? ",
         name: "id",
         validate: function (value) {
-            if (!isNaN(value)) return true;
+            if (!isNaN(value) && value.length && value> 0) return true;
             else return 'Please enter valid id';
         }
     },
@@ -99,8 +100,9 @@ const questionsEngineer = [
         message: "Enter engineer's github username? ",
         name: "github",
         validate: function (value) {
-            if (value.length) return true;
-            else return 'Please enter manager name';
+            const regChar = /^[a-zA-Z]*$/;
+            if (value.length && isNaN(value) && regChar.test(value)) return true;
+            else return 'Please enter valid github';
         }
     }
 ]
@@ -110,7 +112,8 @@ const questionsIntern = [
         message: "Enter intern name? ",
         name: "name",
         validate: function (value) {
-            if (value.length) return true;
+            const regChar = /^[a-zA-Z]*$/;
+            if (value.length && isNaN(value) && regChar.test(value)) return true;
             else return 'Please enter manager name';
         }
     },
@@ -119,7 +122,7 @@ const questionsIntern = [
         message: "Enter intern id? ",
         name: "id",
         validate: function (value) {
-            if (!isNaN(value)) return true;
+            if (!isNaN(value) && value.length && value>0) return true;
             else return 'Please enter valid id';
         }
     },
@@ -138,17 +141,12 @@ const questionsIntern = [
         message: "Enter intern school ",
         name: "school",
         validate: function (value) {
-            if (value.length) return true;
-            else return 'Please enter manager name';
+            if (value.length && isNaN(value)) return true;
+            else return 'Please enter valid school';
         }
 
     }
 ]
-
-//functions
-//function to ask to add more employees
-
-
 
 
 inquirer.prompt(questionsManager).then(answers => {
